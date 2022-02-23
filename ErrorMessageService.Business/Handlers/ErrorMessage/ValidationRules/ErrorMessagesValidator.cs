@@ -1,13 +1,16 @@
-﻿using Core.Constants.RegularEx;
+﻿using Core.Constants;
+using Core.Constants.RegularEx;
 using Core.Validation;
+using Core.Wrappers;
 using ErrorMessageService.Business.Handlers.ErrorMessage.Commands;
 using FluentValidation;
+using MediatR;
 
 namespace ErrorMessageService.Business.Handlers.ValidationRules.ErrorMessage;
 
-public class CreateErrorMessagesValidator : CustomValidator<CreateErrorMessageCommand>
+public class CreateErrorMessagesValidator:CustomValidator<CreateErrorMessageCommand>
 {
-
+    
     public CreateErrorMessagesValidator()
     {
         RuleFor(_ => _.SubStatusCode).NotEmpty().Must(RegularEx.IsNumeric);

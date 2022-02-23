@@ -1,6 +1,11 @@
 ﻿using ErrorMessageService.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ErrorMessageService.Data.Seed
 {
@@ -41,7 +46,7 @@ namespace ErrorMessageService.Data.Seed
 
                 new ErrorMessages { ErrorMessageId = 21, SubStatusCode = 4000, StatusCode = 400, Name = "Bad Request", Decription = "The server could not understand the request due to invalid syntax.", LanguageId = _ids[0] },
                 new ErrorMessages { ErrorMessageId = 22, SubStatusCode = 4001, StatusCode = 401, Name = "Unauthorized", Decription = "Although the HTTP standard specifies unauthorized, semantically this response means unauthenticated.", LanguageId = _ids[0] },
-                new ErrorMessages { ErrorMessageId = 23, SubStatusCode = 4002, StatusCode = 402, Name = "Payment Required", Decription = "This response code is reserved for future use. The initial aim for creating this code was using it for digital payment systems, however this status code is used very rarely and no standard convention exists.", LanguageId = _ids[0] },
+                new ErrorMessages { ErrorMessageId = 23, SubStatusCode = 4002, StatusCode = 402, Name = "Payment Required", Decription = "This response code is reserved for future use. The initial aim for creating this code was using it for digital payment systems, however this status code is used very rarely and no standard convention exists.",LanguageId = _ids[0]},
                 new ErrorMessages { ErrorMessageId = 24, SubStatusCode = 4003, StatusCode = 403, Name = "Forbidden", Decription = "The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized, the client's identity is known to the server.", LanguageId = _ids[0] },
                 new ErrorMessages { ErrorMessageId = 25, SubStatusCode = 4004, StatusCode = 404, Name = "Not Found", Decription = "he server can not find the requested resource. In the browser, this means the URL is not recognized. In an API, this can also mean that the endpoint is valid but the resource itself does not exist. Servers may also send this response instead of 403 Forbidden to hide the existence of a resource from an unauthorized client. This response code is probably the most well known due to its frequent occurrence on the web.", LanguageId = _ids[0] },
                 new ErrorMessages { ErrorMessageId = 26, SubStatusCode = 4005, StatusCode = 405, Name = "Method Not Allowed", Decription = "The request method is known by the server but is not supported by the target resource. For example, an API may not allow calling DELETE to remove a resource.", LanguageId = _ids[0] },
@@ -62,12 +67,12 @@ namespace ErrorMessageService.Data.Seed
                 new ErrorMessages { ErrorMessageId = 40, SubStatusCode = 5002, StatusCode = 502, Name = "Bad Gateway", Decription = "This error response means that the server, while working as a gateway to get a response needed to handle the request, got an invalid response.", LanguageId = _ids[0] },
                 new ErrorMessages { ErrorMessageId = 41, SubStatusCode = 5003, StatusCode = 503, Name = "Service Unavailable", Decription = "The server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded. Note that together with this response, a user-friendly page explaining the problem should be sent. This response should be used for temporary conditions and the Retry-After HTTP header should, if possible, contain the estimated time before the recovery of the service. The webmaster must also take care about the caching-related headers that are sent along with this response, as these temporary condition responses should usually not be cached.", LanguageId = _ids[0] },
                 new ErrorMessages { ErrorMessageId = 42, SubStatusCode = 5004, StatusCode = 504, Name = "Gateway Timeout", Decription = "This error response is given when the server is acting as a gateway and cannot get a response in time.", LanguageId = _ids[0] },
-
+                
                 new ErrorMessages { ErrorMessageId = 43, SubStatusCode = 1000, StatusCode = 100, Name = "Devam", Decription = "Şimdiye kadar her şeyin yolunda gittiğinin ve isteğin henüz sunucu tarafından reddedilmediğinin bir göstergesidir.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 44, SubStatusCode = 1001, StatusCode = 101, Name = "Anahtarlama Protokolü", Decription = "Bu aşamada, sunucunun bir istemci tarafından talep edildiği gibi protokolü değiştirdiğini belirtir. Sunucu daha sonra protokolün değiştirildiğini belirtmek için yanıt başlığında bir yükseltme yapar.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 45, SubStatusCode = 1002, StatusCode = 102, Name = "İşlem", Decription = "Bu HTTP durum kodu , sunucunun isteği aldığını ve işlediğini, ancak henüz bir yanıt olmadığını gösterir. ", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 46, SubStatusCode = 1003, StatusCode = 103, Name = "Erken İpuçları", Decription = "Bu HTTP durum kodu, esas olarak, sunucu bir HTTP mesajı göndermeden önce bazı yanıt başlıklarını döndürmek için kullanılır. ", LanguageId = _ids[1] },
-
+                
                 new ErrorMessages { ErrorMessageId = 47, SubStatusCode = 2000, StatusCode = 200, Name = "Tamam", Decription = "HTTP 200 durum kodu, yanıtın başarılı olduğunu gösterir. Yani, istemci ile sunucu arasındaki iletişim herhangi bir hata olmadan sorunsuz bir şekilde yürütülmüştür.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 48, SubStatusCode = 2001, StatusCode = 201, Name = "Oluşturuldu", Decription = "Bu, talebin sadece başarılı olmadığını, aynı zamanda bir kaynağın da yaratıldığını gösterir. Bu durum kodu, sunucuya gönderilen kaynağı tanımladığı için genellikle bir POST isteğiyle birlikte gelir.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 49, SubStatusCode = 2002, StatusCode = 202, Name = "Onaylandı", Decription = "Bu, bir istemcinin sunucuda bir şey yaratma talebinde bulunduğu, ardından yapılan talebin kabul edildiği, ancak hala bir miktar işlemden geçtiği için henüz tamamlanmadığı anlamına gelir.", LanguageId = _ids[1] },
@@ -76,7 +81,7 @@ namespace ErrorMessageService.Data.Seed
                 new ErrorMessages { ErrorMessageId = 52, SubStatusCode = 2005, StatusCode = 205, Name = "İçeriği Baştan al", Decription = "Burada istek başarılı bir şekilde işlenir, ancak yanıt kullanıcıya belge görünümünü sıfırlamasını söyler, böylece istek sunucudan alındığı orijinal durumuna geri döner.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 53, SubStatusCode = 2006, StatusCode = 206, Name = "Kısmi İçerik", Decription = "GET için kısmi içerik (içeriğin bir belirli bir parçası) başarılıyla döndürülmüştür.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 54, SubStatusCode = 2007, StatusCode = 207, Name = "Çok-Statü", Decription = "Sunucu, mesajın gövdesine XML belgesi olarak yerleştirilmiş olan birçok bağımsız işlemin sonucunu bir kerede geçti.", LanguageId = _ids[1] },
-
+                
                 new ErrorMessages { ErrorMessageId = 55, SubStatusCode = 3000, StatusCode = 300, Name = "Çok Seçenek", Decription = "Bu HTTP kodu, bir kullanıcının seçebileceği çok sayıda seçeneği veya kaynağı gösterir ve her bir seçenek veya kaynak benzersiz bir şekilde tanımlanabilir.Belirli bir yanıtı seçmenin genel olarak kabul edilmiş bir yolu olmadığından, bu yanıt kodu nadiren kullanılır.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 56, SubStatusCode = 3001, StatusCode = 301, Name = "Kalıcı Taşındı", Decription = "Burada, kaynağa yapılacak tüm gelecekteki istekler belirli bir URL'ye yönlendirilmelidir. Artık var olmayan bir sayfadan yönlendirme yapmak için kullanılabilir.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 57, SubStatusCode = 3002, StatusCode = 302, Name = "Geçici Taşındı", Decription = "Bu yanıt, 301 HTTP durum koduna benzer. Buradaki fark, istenen kaynağın geçici olarak belirli bir başlığa taşınmış olmasıdır.", LanguageId = _ids[1] },
@@ -85,7 +90,7 @@ namespace ErrorMessageService.Data.Seed
                 new ErrorMessages { ErrorMessageId = 60, SubStatusCode = 3005, StatusCode = 305, Name = "Proxy Kullan", Decription = "Sunucu tarafından döndürülen proxy'in kullanılması gerektiği belirtilir.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 61, SubStatusCode = 3007, StatusCode = 307, Name = "Geçici olarak yeniden gönder", Decription = "Bu durumda, yanıt kodu, istenen kaynağın geçici olarak başka bir URL'e taşındığını gösterir. İstemcinin bir istekte bulunmak için orijinal URL'i kullanmaya devam etmesi beklenir.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 62, SubStatusCode = 3008, StatusCode = 308, Name = "Kalıcı Yönlendirme", Decription = "Bu durumda, istenen kaynağa, isteklerin sorunsuz çalışmasına izin veren yeni bir kalıcı URL atanmıştır. Değiştirilebilen 301 HTTP durum kodunun aksine, yeniden yönlendirme sırasında istek yöntemi değişmez.", LanguageId = _ids[1] },
-
+                
                 new ErrorMessages { ErrorMessageId = 63, SubStatusCode = 4000, StatusCode = 400, Name = "Kötü İstek", Decription = "Bu, alınan isteğin yanlış söz diziminden kaynaklanabilecek bir hata nedeniyle sunucu tarafından işlenemediğini gösterir. Sunucu, bir sonraki talep alındığında bazı değişikliklerin yapılmasını bekler, aksi takdirde aynı hata devam eder.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 64, SubStatusCode = 4001, StatusCode = 401, Name = "Yetkisiz", Decription = "Bu durumda, alınan bir yanıta erişim sağlamak için yetkilendirme gerekir. Bu HTTP durum kodu HTTP 403'e benzer. Ancak burada, talebin kabul edilebilmesi için geçerli kimlik bilgilerine sahip olması beklenir.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 65, SubStatusCode = 4002, StatusCode = 402, Name = "Ödeme Gerekli", Decription = "Ödeme gerekiyor. (gelecekte kullanılması için ayrılmıştır).", LanguageId = _ids[1] },
@@ -103,7 +108,7 @@ namespace ErrorMessageService.Data.Seed
                 new ErrorMessages { ErrorMessageId = 77, SubStatusCode = 4014, StatusCode = 414, Name = "URI Çok Uzun", Decription = "URI (URL) fazla büyük.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 78, SubStatusCode = 4016, StatusCode = 416, Name = "Menzil Tatmin Edilemez", Decription = "İstenilen kaynak istenilen medya tipini desteklemiyor.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 79, SubStatusCode = 4017, StatusCode = 417, Name = "Beklenti Başarısız", Decription = "İstek yapılan parça (bir dosyanın bir parçası vb..) sunucu tarafından verilebiliyor veya uygun değil.", LanguageId = _ids[1] },
-
+                
                 new ErrorMessages { ErrorMessageId = 80, SubStatusCode = 5000, StatusCode = 500, Name = "İç Sunucu Hatası", Decription = "Burada, belirli bir isteğin, isteği tamamlayamamasına neden olan beklenmedik bir durumla karşılaştığı anlamına gelir. Kullanıcının bu HTTP durum kodunu web sayfasında görmesi beklenmez.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 81, SubStatusCode = 5001, StatusCode = 501, Name = "Uygulanmadı", Decription = "Bu HTTP durum kodu, sunucunun belirli bir isteği tamamlamak için gereken gereksinimleri desteklemediğini veya sahip olmadığını gösterir. Bu, kullanıcı-istemcinin erişmeye çalıştığı sunucunun düzeltilmesi gerektiği anlamına gelir.", LanguageId = _ids[1] },
                 new ErrorMessages { ErrorMessageId = 82, SubStatusCode = 5002, StatusCode = 502, Name = "Kötü Ağ Geçidi", Decription = "Bu HTTP kodu, sunucunun proxy olarak hareket ederken istekte bulunurken sunucudan geçersiz bir yanıt aldığını gösterir.", LanguageId = _ids[1] },

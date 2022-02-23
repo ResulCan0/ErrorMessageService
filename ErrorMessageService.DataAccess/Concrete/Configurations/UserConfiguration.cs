@@ -1,6 +1,11 @@
 ﻿using ErrorMessageService.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ErrorMessageService.Data.Concrete.Configurations
 {
@@ -13,7 +18,7 @@ namespace ErrorMessageService.Data.Concrete.Configurations
             #endregion
 
             #region Columns
-            builder.Property(_ => _.Title);
+            builder.Property(_=>_.Title);
             builder.Property(_ => _.Username);
             builder.Property(_ => _.Password);
             #endregion

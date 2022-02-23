@@ -1,6 +1,11 @@
 ﻿using ErrorMessageService.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ErrorMessageService.Data.Concrete.Configurations
 {
@@ -20,7 +25,7 @@ namespace ErrorMessageService.Data.Concrete.Configurations
             builder
                 .HasOne(_ => _.App)
                 .WithMany(c => c.ErrorsDetails)
-                .HasForeignKey(fk => fk.App.AppId)
+                .HasForeignKey(fk=>fk.App.AppId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             #endregion

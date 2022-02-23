@@ -4,6 +4,11 @@ using ErrorMessageService.Data.Concrete.EntityFramework.Context;
 using ErrorMessageService.Entities.Concrete;
 using ErrorMessageService.Entities.Dto;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ErrorMessageService.Data.Concrete.Repository
 {
@@ -18,14 +23,14 @@ namespace ErrorMessageService.Data.Concrete.Repository
             var result = await (from errordetails in Context.ErrorsDetails
                                 join errormessage in Context.ErrorMessage
                                     on errordetails.ErrorsDetailsId equals errormessage.ErrorMessageId
-                                join abc in Context.App
-                                on errordetails.App.AppId equals abc.AppId
+                                    join abc in Context.App
+                                    on errordetails.App.AppId equals abc.AppId
                                 select new ErrorDetailsDto()
                                 {
                                     AppName = abc.AppName,
                                     Description = errormessage.Decription,
                                     ErrorMessageStatusCode = errormessage.StatusCode,
-                                    RequestTime = DateTime.Now,
+                                    RequestTime= DateTime.Now,
 
                                 }).ToListAsync();
             return result;

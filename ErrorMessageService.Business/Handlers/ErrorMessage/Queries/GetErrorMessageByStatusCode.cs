@@ -7,8 +7,8 @@ namespace ErrorMessageService.Business.Handlers.ErrorMessage.Queries;
 
 public class GetErrorMessageByStatusCode : IRequest<IResponse>
 {
-    public int StatusCode { get; set; }
-    public int LanguageId { get; set; }
+    public int StatusCode { get; set; } 
+    public int LanguageId { get; set; } 
     public class GetErrorMessageBySubStatusCodeHandler : IRequestHandler<GetErrorMessageByStatusCode, IResponse>
     {
         private readonly IErrorMessageRepository _errorMessageRepository;

@@ -1,7 +1,13 @@
-﻿using ErrorMessageService.Data.Seed;
+﻿using ErrorMessageService.Data.Concrete.Configurations;
+using ErrorMessageService.Data.Seed;
 using ErrorMessageService.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ErrorMessageService.Data.Concrete.EntityFramework.Context
 {

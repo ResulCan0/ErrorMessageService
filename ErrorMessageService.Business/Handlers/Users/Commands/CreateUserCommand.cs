@@ -1,12 +1,22 @@
 ﻿using Core.Wrappers;
+using ErrorMessageService.Business.Handlers.Users.Queries;
 using ErrorMessageService.Business.Helper;
 using ErrorMessageService.Data.Abstract;
 using ErrorMessageService.Entities.Concrete;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Abp.Json;
+using Core.Constants;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ErrorMessageService.Business.Handlers.Users.Commands
 {
-    public class CreateUserCommand : IRequest<IResponse>
+    public class CreateUserCommand: IRequest<IResponse>
     {
         public string Title { get; set; }
         public string UserName { get; set; }
@@ -33,7 +43,7 @@ namespace ErrorMessageService.Business.Handlers.Users.Commands
                 _userRepository.Add(addUser);
                 var result = await _userRepository.GetByUsername(addUser.Username);
 
-                if (result.Count() == 0)
+                if (result.Count()==0)
                 {
                     _userRepository.Add(addUser);
                     await _userRepository.SaveChangesAsync();

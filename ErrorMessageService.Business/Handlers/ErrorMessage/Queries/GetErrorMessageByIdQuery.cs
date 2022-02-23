@@ -1,7 +1,14 @@
 ﻿using Core.Wrappers;
 using ErrorMessageService.Data.Abstract;
 using ErrorMessageService.Entities.Concrete;
+using ErrorMessageService.Entities.Dto;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ErrorMessageService.Business.Handlers.ErrorMessage.Queries
 {
@@ -22,7 +29,7 @@ namespace ErrorMessageService.Business.Handlers.ErrorMessage.Queries
                 var errorMessage = await _errorMessageRepository.GetAsync(_ => _.ErrorMessageId == request.ErrorMessageId);
 
                 return new Response<ErrorMessages>(errorMessage);
-
+                
             }
         }
     }
