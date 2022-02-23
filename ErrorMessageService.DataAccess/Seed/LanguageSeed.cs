@@ -1,11 +1,6 @@
 ﻿using ErrorMessageService.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErrorMessageService.Data.Seed
 {
@@ -16,9 +11,9 @@ namespace ErrorMessageService.Data.Seed
             builder.HasData(
                 new Language
                 {
-                    LanguageId=1,
-                    LanguagePath=1,
-                    LanguageName="İngilizce"
+                    LanguageId = 1,
+                    LanguagePath = 1,
+                    LanguageName = "İngilizce"
                 }, new Language
                 {
                     LanguageId = 2,

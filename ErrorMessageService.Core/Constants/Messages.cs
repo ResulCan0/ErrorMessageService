@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Core.Constants
 {
@@ -29,7 +24,7 @@ namespace Core.Constants
         // Exception
         [Display(Name = "NotEmpty")]
         NotEmpty = 4000,
-        
+
         [Display(Name = "AuthorizationsDenied")]
         AuthorizationsDenied = 4001,
 
@@ -68,6 +63,6 @@ namespace Core.Constants
 
         [Display(Name = "WrongOTP")]
         WrongOTP = 4012,
-        
+
     }
 }

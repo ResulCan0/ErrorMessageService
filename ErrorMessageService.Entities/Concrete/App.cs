@@ -1,13 +1,8 @@
 ﻿using ErrorMessageService.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErrorMessageService.Entities.Concrete
 {
-    public class App:IEntity
+    public class App : IEntity
     {
         #region Primary Key
         public int AppId { get; set; }
@@ -15,8 +10,6 @@ namespace ErrorMessageService.Entities.Concrete
 
         #region Columns
         public string AppName { get; set; }
-
-
 
         #endregion
 

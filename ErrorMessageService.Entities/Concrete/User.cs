@@ -1,14 +1,8 @@
 ﻿using ErrorMessageService.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace ErrorMessageService.Entities.Concrete
 {
-    public class User:IEntity
+    public class User : IEntity
     {
 
         #region Primary Key
