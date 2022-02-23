@@ -1,11 +1,6 @@
 ﻿using ErrorMessageService.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErrorMessageService.Data.Seed
 {
@@ -16,9 +11,9 @@ namespace ErrorMessageService.Data.Seed
             builder.HasData(
                 new App
                 {
-                    AppId =1,
-                    AppName ="App1",
-                },new App
+                    AppId = 1,
+                    AppName = "App1",
+                }, new App
                 {
                     AppId = 2,
                     AppName = "App2",

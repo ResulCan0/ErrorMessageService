@@ -1,6 +1,5 @@
 ﻿using ErrorMessageService.Business.Handlers.Users.Commands;
 using ErrorMessageService.Business.Handlers.Users.Queries;
-using ErrorMessageService.Data.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using NorthwindWebApi.Controllers.BaseController;
 
@@ -19,7 +18,12 @@ namespace ErrorMessageService.Api.Controllers
         [HttpPost("/SaveUser")]
         public async Task<IActionResult> Add([FromBody] CreateUserCommand createUserCommand)
         {
-                return Created("", await Mediator.Send(createUserCommand));
+            return Created("", await Mediator.Send(createUserCommand));
+        }
+        [HttpPost("/Token")]
+        public async Task<IActionResult> GetByUname(string Username, string Password)
+        {
+            return Ok(await Mediator.Send(new UserTokenQuery() { userName = Username, Password = Password }));
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Core.Wrappers;
 using ErrorMessageService.Data.Abstract;
-using MediatR;
 using ErrorMessageService.Entities.Concrete;
+using MediatR;
 
 namespace ErrorMessageService.API.Handlers.ErrorMessage.Queries
 {

@@ -1,7 +1,4 @@
-﻿using System.Runtime;
-using ErrorMessageService.Entities.Base;
-
-namespace ErrorMessageService.Entities.Dto;
+﻿namespace ErrorMessageService.Entities.Dto;
 
 public class ErrorMessageByStatusCodeDto
 {

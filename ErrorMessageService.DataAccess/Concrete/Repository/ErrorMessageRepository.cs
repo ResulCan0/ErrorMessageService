@@ -4,11 +4,6 @@ using ErrorMessageService.Data.Concrete.EntityFramework.Context;
 using ErrorMessageService.Entities.Concrete;
 using ErrorMessageService.Entities.Dto;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ErrorMessageService.Data.Concrete.Repository
 {
@@ -23,15 +18,15 @@ namespace ErrorMessageService.Data.Concrete.Repository
             int pageNumber)
         {
             var result = await (from errorMessage in Context.ErrorMessage
-                where errorMessage.LanguageId == languageId
-                select new ErrorMessageDto()
-                {
-                    ErrorMessageId = errorMessage.ErrorMessageId,
-                    SubStatusCode = errorMessage.SubStatusCode,
-                    StatusCode = errorMessage.StatusCode,
-                    Name = errorMessage.Name,
-                    Decription = errorMessage.Decription
-                }).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToListAsync();
+                                where errorMessage.LanguageId == languageId
+                                select new ErrorMessageDto()
+                                {
+                                    ErrorMessageId = errorMessage.ErrorMessageId,
+                                    SubStatusCode = errorMessage.SubStatusCode,
+                                    StatusCode = errorMessage.StatusCode,
+                                    Name = errorMessage.Name,
+                                    Decription = errorMessage.Decription
+                                }).Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToListAsync();
             return result;
         }
 
@@ -39,16 +34,16 @@ namespace ErrorMessageService.Data.Concrete.Repository
             int statusCode)
         {
             var result = await (from errorMessage in Context.ErrorMessage
-                where errorMessage.StatusCode == statusCode
-                where errorMessage.LanguageId==languageId
-                select new ErrorMessageByStatusCodeDto()
-                {
-                    SubStatusCode = errorMessage.SubStatusCode,
-                    StatusCode = errorMessage.StatusCode,
-                    Name = errorMessage.Name,
-                    Decription = errorMessage.Decription,
-                    LanguageId = errorMessage.LanguageId
-                }).ToListAsync();
+                                where errorMessage.StatusCode == statusCode
+                                where errorMessage.LanguageId == languageId
+                                select new ErrorMessageByStatusCodeDto()
+                                {
+                                    SubStatusCode = errorMessage.SubStatusCode,
+                                    StatusCode = errorMessage.StatusCode,
+                                    Name = errorMessage.Name,
+                                    Decription = errorMessage.Decription,
+                                    LanguageId = errorMessage.LanguageId
+                                }).ToListAsync();
             return result;
         }
     }

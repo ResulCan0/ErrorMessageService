@@ -23,17 +23,19 @@ namespace ErrorMessageService.Api.Controllers
             return Ok(await Mediator.Send(new GetErrorMessageByIdQuery() { ErrorMessageId = errorMessageId }));
         }
         [HttpGet("/LanguageId/{languageId}/StatusCode/{statusCode}")]
-        public async Task<IActionResult> GetErrorMessageBySubStatusCode(int languageId,int statusCode)
+        public async Task<IActionResult> GetErrorMessageBySubStatusCode(int languageId, int statusCode)
         {
-            return Ok(await Mediator.Send(new GetErrorMessageByStatusCode() {LanguageId  = languageId,StatusCode = statusCode}));
+            return Ok(await Mediator.Send(new GetErrorMessageByStatusCode() { LanguageId = languageId, StatusCode = statusCode }));
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add([FromBody] CreateErrorMessageCommand createCategoryCommand)
         {
             return Created("", await Mediator.Send(createCategoryCommand));
         }
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete([FromBody] DeleteErrorMessageCommand deleteErrorMessageCommand)
         {
             return Ok(await Mediator.Send(deleteErrorMessageCommand));
